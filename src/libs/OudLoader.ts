@@ -25,7 +25,9 @@ export class OudLoader {
       from: encoding,
       type: 'string',
       bom: false,
-    }).split('\n');
+    })
+      .replace(/\r/g, '')
+      .split('\n');
   }
 
   parse(): string {
