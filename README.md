@@ -1,8 +1,10 @@
 # oud-to-json
 
+## usage
+
 ```ts
-import { readFileSync, writeFileSync } from 'fs';
-import { OudLoader } from '/path/to/OudLoader';
+const { readFileSync, writeFileSync } = require('fs');
+const { OudLoader } = require('@route-builders/oud-to-json');
 
 const buffer = readFileSync('/path/to/file.oud');
 const loader = new OudLoader(buffer);
