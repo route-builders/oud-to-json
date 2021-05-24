@@ -1,23 +1,23 @@
 {
-  "name": "oud-to-json",
+  "name": "@route-builders/oud-to-json",
   "description": "convert from .oud to .json",
   "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
   "author": {
-    "name": "up-tri",
-    "email": "yaki-shake@up-tri.me",
+    "name": "route-builders",
+    "email": "info@mail.route.builders",
     "url": "https://up-tri.me"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:up-tri/oud-to-json.git"
+    "url": "git@github.com:route-builders/oud-to-json.git"
   },
   "bugs": {
-    "url": "https://github.com/up-tri/oud-to-json/issues"
+    "url": "https://github.com/route-builders/oud-to-json/issues"
   },
-  "homepage": "https://up-tri.me",
+  "homepage": "https://doc.route.builders",
   "scripts": {
     "build": "tsc",
     "clean": "tsc --clean",
