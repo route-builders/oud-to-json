@@ -1,7 +1,7 @@
 {
   "name": "oud-to-json",
   "description": "convert from .oud to .json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
@@ -27,11 +27,11 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@types/encoding-japanese": "^1.0.17",
     "encoding-japanese": "^1.0.30",
     "typescript": "^4.2.4"
   },
   "devDependencies": {
+    "@types/encoding-japanese": "^1.0.17",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",

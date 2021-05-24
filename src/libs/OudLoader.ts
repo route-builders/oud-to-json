@@ -1,6 +1,6 @@
 import * as Encoder from 'encoding-japanese';
-import { InvalidFileTypeError } from 'src/errors/InvalidFileTypeError';
-import { Document } from 'src/types/Document';
+import { InvalidFileTypeError } from '../errors/InvalidFileTypeError';
+import { Document } from '../types/Document';
 
 const OBJECT_ENTRYPOINT_REGEX = /^([a-zA-Z0-9_]+)\.$/;
 const OBJECT_FINISHPOINT_REGEX = /^\.$/;
