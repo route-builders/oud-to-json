@@ -1,4 +1,3 @@
-import * as Encoder from 'encoding-japanese';
 import { InvalidFileTypeError } from '../errors/InvalidFileTypeError';
 import { Document } from '../types/Document';
 
@@ -6,28 +5,13 @@ const OBJECT_ENTRYPOINT_REGEX = /^([a-zA-Z0-9_]+)\.$/;
 const OBJECT_FINISHPOINT_REGEX = /^\.$/;
 const KV_REGEX = /^([a-zA-Z0-9_]+)=(.*)$/;
 
-export class OudLoader {
-  private fileBuffer: Buffer;
+export class Oud2JSON {
   private sources: string[];
   private output: Document;
 
-  constructor(fileBuffer: Buffer) {
-    this.fileBuffer = fileBuffer;
+  constructor(sources: string[]) {
+    this.sources = sources;
     this.output = {};
-
-    const encoding = Encoder.detect(this.fileBuffer, ['SJIS', 'UTF8']);
-    if (!encoding) {
-      throw new InvalidFileTypeError();
-    }
-
-    this.sources = Encoder.convert(this.fileBuffer, {
-      to: 'UNICODE',
-      from: encoding,
-      type: 'string',
-      bom: false,
-    })
-      .replace(/\r/g, '')
-      .split('\n');
   }
 
   parse(): string {
