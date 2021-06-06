@@ -1,3 +1,3 @@
 export { InvalidFileTypeError } from './errors/InvalidFileTypeError';
-export { OudLoader } from './libs/OudLoader';
+export { Oud2JSON } from './libs/Oud2JSON';
 export type { Document } from './types/Document';
