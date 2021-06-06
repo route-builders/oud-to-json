@@ -1,7 +1,7 @@
 {
   "name": "@route-builders/oud-to-json",
   "description": "convert from .oud string to .json",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
@@ -23,6 +23,7 @@
     "clean": "tsc --clean",
     "build:watch": "tsc --watch",
     "build:prod": "tsc -p tsconfig.prod.json",
+    "prepare": "tsc -p tsconfig.prod.json",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
