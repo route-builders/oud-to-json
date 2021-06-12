@@ -1,14 +1,32 @@
 # oud-to-json
 
+Convert between .oud and .json .
+
+**Document**  
+https://doc.route.builders/oud-to-json/
+
 ## usage
+
+### .oud -> .json
 
 ```ts
 const { readFileSync, writeFileSync } = require('fs');
-const { OudLoader } = require('@route-builders/oud-to-json');
+const { Oud2JSON } = require('@route-builders/oud-to-json');
 
 const buffer = readFileSync('/path/to/file.oud');
-const loader = new OudLoader(buffer);
-writeFileSync('result.json', loader.parse());
+const oj = new Oud2JSON(buffer);
+writeFileSync('result.json', oj.parse());
+```
+
+### .json -> .oud
+
+```ts
+const { writeFileSync } = require('fs');
+const { JSON2Oud } = require('@route-builders/oud-to-json');
+
+const json = '{"FileType":"OuDia.1.02","Rosen": ... }';
+const jo = new JSON2Oud(json);
+writeFileSync('result.oud', jo.parse());
 ```
 
 ## developer
