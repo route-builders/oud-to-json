@@ -22,10 +22,6 @@ jobs:
           always-auth: true
       - name: install modules
         run: npm i
-      - name: build & check webpack dist
-        run: |
-          npm run build:webpack && \
-          [ -s ./dist/O_O.js ]
       - name: build & check npm dist
         run: |
           rm -rf dist *.tsbuildinfo && \
@@ -76,8 +72,6 @@ jobs:
           commitish: master
           draft: false
           prerelease: false
-      - name: build:prod
-        run: npm run build:webpack
       - name: release to npm
         run: npm publish
         env:
