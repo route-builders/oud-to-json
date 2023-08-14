@@ -1,12 +1,14 @@
+import { InvalidFileContentError } from '../errors/InvalidFileContentError';
 import { InvalidFileTypeError } from '../errors/InvalidFileTypeError';
 import { NestingLevelTooDeepError } from '../errors/NestingLevelTooDeepError';
 import { Document } from '../types/Document';
 import { isEmptyObject } from './isEmptyObject';
+import { isValidOudTextContent } from './isValidOudTextContent';
 import { MULTI_VALUE_KEYS, UNIQUE_OBJECT_KEYS } from './keys';
+import { splitKV } from './splitKV';
 
 const OBJECT_ENTRYPOINT_REGEX = /^([a-zA-Z0-9_]+)\.$/;
 const OBJECT_FINISHPOINT_REGEX = /^\.$/;
-const KV_REGEX = /^([a-zA-Z0-9_]+)=(.*)$/;
 
 const RECURSION_DEPTH_LIMIT = 10;
 
@@ -15,7 +17,9 @@ export class Oud2JSON {
   private output: Document;
 
   constructor(sources: string[]) {
-    this.sources = sources;
+    if (!isValidOudTextContent(sources)) throw new InvalidFileContentError();
+
+    this.sources = sources.filter((v) => !!v);
     this.output = {};
   }
 
@@ -35,10 +39,10 @@ export class Oud2JSON {
       const line = this.sources[idx];
       if (!line) continue;
 
-      const keyValueMatcher = line.match(KV_REGEX);
-      if (keyValueMatcher) {
-        const key = keyValueMatcher[1];
-        const value = (keyValueMatcher[2] ?? '').trimEnd();
+      const kv = splitKV(line);
+      if (kv) {
+        const key = kv.key;
+        const value = kv.value;
         if (key) {
           if (!MULTI_VALUE_KEYS.includes(key) && !(key in parent)) {
             parent = { ...parent, [key]: value };
