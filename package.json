@@ -24,7 +24,7 @@
     "clean": "tsc --clean",
     "build:watch": "tsc --watch",
     "build:prod": "tsc -p tsconfig.prod.json",
-    "prepare": "tsc -p tsconfig.prod.json",
+    "postinstall": "tsc -p tsconfig.prod.json",
     "lint": "eslint .",
     "test": "jest",
     "test:coverage": "jest --coverage"
