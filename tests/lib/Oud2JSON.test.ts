@@ -16,6 +16,18 @@ describe('Oud2JSON', () => {
 
       expect(JSON.parse(result)).toStrictEqual(expected);
     });
+    test('parse with empty `Ressya` directive data', async () => {
+      // read sample data
+      const oudFileLines = fs
+        .readFileSync(path.join(__dirname, './resources/mock/empty_ressya_patterns.oud'), 'utf8')
+        .split('\n');
+
+      const ins = new Oud2JSON(oudFileLines);
+      const result = ins.parse();
+      const { default: expected } = await import('./resources/mock/empty_ressya_patterns');
+
+      expect(JSON.parse(result)).toStrictEqual(expected);
+    });
     test('raise error with invalid data', async () => {
       const oudFileLines = `
       FileType=OuDia.1.02

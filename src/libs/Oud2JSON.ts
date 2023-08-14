@@ -73,6 +73,12 @@ export class Oud2JSON {
           parent = { ...parent, [objectName]: [...currentArr, updatedObj] };
         }
         idx = nextPointer;
+
+        // `objectName` キーの値をパースした後の整形処理
+        if ((objectName === 'Kudari' || objectName === 'Nobori') && isEmptyObject(parent[objectName])) {
+          parent[objectName] = { Ressya: [] };
+        }
+
         continue;
       }
 
