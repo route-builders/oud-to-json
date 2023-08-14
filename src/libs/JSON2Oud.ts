@@ -1,3 +1,5 @@
+import { MULTI_VALUE_KEYS } from './keys';
+
 export class JSON2Oud {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private jsonSource: any;
@@ -22,6 +24,12 @@ export class JSON2Oud {
         const item = obj[key];
         if (typeof item === 'string') {
           lines.push(this.oudKV(key, item));
+          continue;
+        }
+        if (MULTI_VALUE_KEYS.includes(key) && Array.isArray(item)) {
+          for (const child of item) {
+            lines.push(this.oudKV(key, child));
+          }
           continue;
         }
         if (Array.isArray(item)) {
