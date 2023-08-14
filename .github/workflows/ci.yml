@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@route-builders'
+          always-auth: true
+      - name: install modules
+        run: npm i
+      - name: build & check npm dist
+        run: |
+          rm -rf dist *.tsbuildinfo && \
+          npm run build:prod && \
+          [ -s ./dist/index.js ] && \
+          [ -s ./types/index.d.ts ]
+      - name: test
+        run: |
+          npm run test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@route-builders'
+          always-auth: true
+      - name: install modules
+        run: npm i
+      - name: bumpup version
+        run: node scripts/bumpup.js
+      - name: commit bumpup
+        uses: cpina/github-action-push-to-another-repository@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: '.'
+          destination-github-username: 'route-builders'
+          destination-repository-name: 'OudOperator'
+          user-email: yaki-shake@up-tri.me
+          user-name: up-tri
+          commit-message: '[skip ci] bumpup version'
+          target-branch: master
+      - name: setup tagname
+        run: |
+          echo "DEPLOYING_TAG_NAME=$(node scripts/version.js)" >> $GITHUB_ENV
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.DEPLOYING_TAG_NAME }}
+          release_name: Release ${{ env.DEPLOYING_TAG_NAME }}
+          commitish: master
+          draft: false
+          prerelease: false
+      - name: release to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
