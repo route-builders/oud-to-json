@@ -7,3 +7,6 @@
 !*.gitkeep
 
 /demo*
+
+/yarn-error*.log
+/types
