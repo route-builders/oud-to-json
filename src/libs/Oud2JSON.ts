@@ -17,9 +17,10 @@ export class Oud2JSON {
   private output: Document;
 
   constructor(sources: string[]) {
-    if (!isValidOudTextContent(sources)) throw new InvalidFileContentError();
+    const _sources = sources.map((line) => line.trimStart()).filter((v) => !!v);
+    if (!isValidOudTextContent(_sources)) throw new InvalidFileContentError();
 
-    this.sources = sources.filter((v) => !!v);
+    this.sources = _sources.filter((v) => !!v);
     this.output = {};
   }
 
