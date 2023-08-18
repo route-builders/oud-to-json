@@ -25,7 +25,7 @@ jobs:
       - name: build & check npm dist
         run: |
           rm -rf dist *.tsbuildinfo && \
-          npm run build:prod && \
+          npm run build && \
           [ -s ./dist/index.js ] && \
           [ -s ./types/index.d.ts ]
       - name: test
@@ -38,7 +38,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
           scope: '@route-builders'
           always-auth: true
@@ -53,7 +53,7 @@ jobs:
         with:
           source-directory: '.'
           destination-github-username: 'route-builders'
-          destination-repository-name: 'OudOperator'
+          destination-repository-name: 'oud-to-json'
           user-email: yaki-shake@up-tri.me
           user-name: up-tri
           commit-message: '[skip ci] bumpup version'
@@ -72,6 +72,8 @@ jobs:
           commitish: master
           draft: false
           prerelease: false
+      - name: build
+        run: npm run build
       - name: release to npm
         run: npm publish
         env:

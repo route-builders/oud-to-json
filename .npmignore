@@ -1,0 +1,10 @@
+/.github
+/.vscode
+/coverage
+/scripts
+/node_modules
+/tests
+/.eslint*
+/.prettier*
+/jest.config.js
+/*.tsbuildinfo
