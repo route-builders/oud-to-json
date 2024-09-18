@@ -8,11 +8,19 @@ export default {
           Ekimei: 'eki_normal__starting_terminal',
           Ekijikokukeisiki: 'Jikokukeisiki_NoboriChaku',
           Ekikibo: 'Ekikibo_Ippan',
+          __meta__: {
+            entry: 3,
+            last: 7,
+          },
         },
         {
           Ekimei: 'eki_normal_last_terminal',
           Ekijikokukeisiki: 'Jikokukeisiki_KudariChaku',
           Ekikibo: 'Ekikibo_Ippan',
+          __meta__: {
+            entry: 8,
+            last: 12,
+          },
         },
       ],
       Ressyasyubetsu: [
@@ -23,6 +31,10 @@ export default {
           DiagramSenColor: '00000000',
           DiagramSenStyle: 'SenStyle_Jissen',
           StopMarkDrawType: 'EStopMarkDrawType_Nothing',
+          __meta__: {
+            entry: 13,
+            last: 20,
+          },
         },
         {
           Syubetsumei: 'traintype_solid__text_red__line_blue',
@@ -31,6 +43,10 @@ export default {
           DiagramSenColor: '00FF0000',
           DiagramSenStyle: 'SenStyle_Jissen',
           StopMarkDrawType: 'EStopMarkDrawType_Nothing',
+          __meta__: {
+            entry: 21,
+            last: 28,
+          },
         },
         {
           Syubetsumei: 'traintype_dashed',
@@ -39,6 +55,10 @@ export default {
           DiagramSenColor: '00000000',
           DiagramSenStyle: 'SenStyle_Hasen',
           StopMarkDrawType: 'EStopMarkDrawType_Nothing',
+          __meta__: {
+            entry: 29,
+            last: 36,
+          },
         },
         {
           Syubetsumei: 'traintype_dotted',
@@ -47,6 +67,10 @@ export default {
           DiagramSenColor: '00000000',
           DiagramSenStyle: 'SenStyle_Tensen',
           StopMarkDrawType: 'EStopMarkDrawType_Nothing',
+          __meta__: {
+            entry: 37,
+            last: 44,
+          },
         },
         {
           Syubetsumei: 'traintype_drawstopmark',
@@ -55,6 +79,10 @@ export default {
           DiagramSenColor: '00000000',
           DiagramSenStyle: 'SenStyle_Jissen',
           StopMarkDrawType: 'EStopMarkDrawType_DrawOnStop',
+          __meta__: {
+            entry: 45,
+            last: 52,
+          },
         },
         {
           Syubetsumei: 'traintype_solid__withalias',
@@ -64,6 +92,10 @@ export default {
           DiagramSenColor: '00000000',
           DiagramSenStyle: 'SenStyle_Jissen',
           StopMarkDrawType: 'EStopMarkDrawType_Nothing',
+          __meta__: {
+            entry: 53,
+            last: 61,
+          },
         },
       ],
       Dia: [
@@ -77,8 +109,16 @@ export default {
                 Ressyabangou: '',
                 Ressyamei: '',
                 EkiJikoku: '1;500,1;501,1;502,1;503/504,1;505/',
+                __meta__: {
+                  entry: 65,
+                  last: 71,
+                },
               },
             ],
+            __meta__: {
+              entry: 64,
+              last: 72,
+            },
           },
           Nobori: {
             Ressya: [
@@ -88,14 +128,30 @@ export default {
                 Ressyabangou: '',
                 Ressyamei: '',
                 EkiJikoku: '1;500,1;501,1;502,1;503/504,1;505/',
+                __meta__: {
+                  entry: 74,
+                  last: 80,
+                },
               },
             ],
+            __meta__: {
+              entry: 73,
+              last: 81,
+            },
+          },
+          __meta__: {
+            entry: 62,
+            last: 82,
           },
         },
       ],
       KitenJikoku: '400',
       DiagramDgrYZahyouKyoriDefault: '60',
       Comment: 'comment\\nafterbreakline',
+      __meta__: {
+        entry: 1,
+        last: 86,
+      },
     },
   ],
   DispProp: {
@@ -120,6 +176,14 @@ export default {
     DiaJikuColor: '00C0C0C0',
     EkimeiLength: '6',
     JikokuhyouRessyaWidth: '6',
+    __meta__: {
+      entry: 87,
+      last: 107,
+    },
   },
   FileTypeAppComment: 'OuDia Ver. 1.02.02',
+  __meta__: {
+    entry: 0,
+    last: 108,
+  },
 };

@@ -2,6 +2,7 @@ import { InvalidFileContentError } from '../errors/InvalidFileContentError';
 import { InvalidFileTypeError } from '../errors/InvalidFileTypeError';
 import { NestingLevelTooDeepError } from '../errors/NestingLevelTooDeepError';
 import { Document } from '../types/Document';
+import { META_FIELD_KEYNAME } from './constants';
 import { isEmptyObject } from './isEmptyObject';
 import { isValidOudTextContent } from './isValidOudTextContent';
 import { MULTI_VALUE_KEYS, UNIQUE_OBJECT_KEYS } from './keys';
@@ -80,8 +81,14 @@ export class Oud2JSON {
         idx = nextPointer;
 
         // `objectName` キーの値をパースした後の整形処理
-        if ((objectName === 'Kudari' || objectName === 'Nobori') && isEmptyObject(parent[objectName])) {
-          parent[objectName] = { Ressya: [] };
+        if ((objectName === 'Kudari' || objectName === 'Nobori') && isEmptyObject(parent[objectName], true)) {
+          parent[objectName] = {
+            Ressya: [],
+            [META_FIELD_KEYNAME]: {
+              entry: idx - 1,
+              last: idx,
+            },
+          };
         }
 
         continue;
@@ -89,10 +96,30 @@ export class Oud2JSON {
 
       const objectFinishpointMatcher = line.match(OBJECT_FINISHPOINT_REGEX);
       if (objectFinishpointMatcher) {
-        return { parent, idx };
+        // // eslint-disable-next-line no-console
+        // console.log('finishpoint', { parent, pointer, idx });
+        return {
+          parent: {
+            ...parent,
+            [META_FIELD_KEYNAME]: {
+              entry: pointer - 1,
+              last: idx,
+            },
+          },
+          idx,
+        };
       }
     }
 
-    return { parent, idx: -1 };
+    return {
+      parent: {
+        ...parent,
+        [META_FIELD_KEYNAME]: {
+          entry: pointer,
+          last: this.sources.length - 1,
+        },
+      },
+      idx: -1,
+    };
   }
 }

@@ -1,3 +1,4 @@
+import { META_FIELD_KEYNAME } from './constants';
 import { MULTI_VALUE_KEYS } from './keys';
 
 export class JSON2Oud {
@@ -21,6 +22,10 @@ export class JSON2Oud {
     const lines: string[] = [];
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        if (key === META_FIELD_KEYNAME) {
+          continue;
+        }
+
         const item = obj[key];
         if (typeof item === 'string') {
           lines.push(this.oudKV(key, item));
